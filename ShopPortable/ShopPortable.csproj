@@ -40,6 +40,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="model\Product.cs" />
     <Compile Include="services\MagentoClient.cs" />
+    <Compile Include="model\Category.cs" />
+    <Compile Include="model\CategoryAttribute.cs" />
+    <Compile Include="model\ProductAttribute.cs" />
+    <Compile Include="model\MagentoAttribute.cs" />
+    <Compile Include="model\TierPrices.cs" />
+    <Compile Include="model\ProductPage.cs" />
+    <Compile Include="model\SearchCriteria.cs" />
+    <Compile Include="model\FilterGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
