@@ -11,6 +11,9 @@ namespace ShopPortable
 {
     public partial class ShopPortablePage : ContentPage
     {
+        private string jsonStringProduct;
+        private string jsonStringCategory;
+
         void onSearchButtonClicked(object sender, System.EventArgs e)
         {
             Navigation.PushAsync(new SearchPage());
@@ -32,7 +35,8 @@ namespace ShopPortable
         {
             lblResult1.Text = "Loading master data. Pleasse wait";
 
-            Client.loadMasterData();
+            //Client.loadMasterData();
+            Client.loadMasterDataCache(this.jsonStringProduct, this.jsonStringCategory);
 
             lblResult1.Text = $"Status: {Client.Status}. {Client.Result}";
 
@@ -56,16 +60,22 @@ namespace ShopPortable
         public ShopPortablePage()
 
         {
-            Client = new MagentoClient("http://192.168.1.91", "admin", "shakhmscpasS1]", 500);
+
+
+        }
+
+        public ShopPortablePage(string jsonStringProduct, string jsonStringCategory)
+        {
+            this.jsonStringProduct = jsonStringProduct;
+            this.jsonStringCategory = jsonStringCategory;
+
+            Client = new MagentoClient("http://192.168.1.91", "admin", "shakhmscpasS1]", 3000);
 
 
             string token = Client.Token;
 
             InitializeComponent();
             lblResult1.Text = token;
-
         }
-
-
     }
 }

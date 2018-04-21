@@ -25,7 +25,7 @@ namespace ShopPortable.services
         public ProductPage productPage = new ProductPage();
         public Category rootCategory = new Category();
 
-        private Dictionary<string, Product> productsBySku = new Dictionary<string, Product>(); 
+        private Dictionary<string, Product> productsBySku = new Dictionary<string, Product>();
         private string username;
         private string password;
         private int maxProductToLoad;
@@ -35,6 +35,8 @@ namespace ShopPortable.services
             get;
             set;
         }
+
+
 
         public string Result { get; set; }
 
@@ -56,7 +58,8 @@ namespace ShopPortable.services
                 {
                     productPage = GetProductPage(1, maxProductToLoad);
 
-                    foreach(Product p in productPage.items){
+                    foreach (Product p in productPage.items)
+                    {
                         productsBySku.Add(p.sku, p);
                     }
 
@@ -76,11 +79,43 @@ namespace ShopPortable.services
 
         }
 
-        public Product getProductBySku(string sku){
-            Product product = new Product();
-           // productsBySku.TryGetValue(sku, out product);
+        public void loadMasterDataCache(string jsonStringProduct, string jsonStringCategory)
+        {
 
-            if(productsBySku.ContainsKey(sku)){
+            if (productPage.items.Count < 1 || rootCategory.children_data.Count < 1)
+            {
+                try
+                {
+                    string jsonP = JsonConvert.DeserializeObject<string>(jsonStringProduct);
+                    productPage = JsonConvert.DeserializeObject<ProductPage>(jsonP);
+
+                    foreach (Product p in productPage.items)
+                    {
+                        productsBySku.Add(p.sku, p);
+                    }
+
+                    string jsonC = JsonConvert.DeserializeObject<string>(jsonStringCategory);
+                    rootCategory = JsonConvert.DeserializeObject<Category>(jsonC);
+                    Result = "Smmple master data loaded successfully";
+                    Status = STATUS_OK;
+                }
+                catch (Exception e)
+                {
+
+                    Result = $"Failed to load sample master data. Please restart the app. \n Error Message: {e.Message}";
+                    Status = STATUS_FAILED;
+                }
+            }
+
+        }
+
+        public Product getProductBySku(string sku)
+        {
+            Product product = new Product();
+            // productsBySku.TryGetValue(sku, out product);
+
+            if (productsBySku.ContainsKey(sku))
+            {
                 product = productsBySku[sku];
             }
 
@@ -202,7 +237,8 @@ namespace ShopPortable.services
                 String name = product.name.ToLower();
                 String queryLoweCase = query.ToLower();
 
-                if (name.Contains(query)){
+                if (name.Contains(query))
+                {
                     products.Add(product);
 
                 }
@@ -224,10 +260,12 @@ namespace ShopPortable.services
 
                         String strCatId = $"{categoryId}";
 
-                        JArray catIds = (JArray) magentoAttr.value;
+                        JArray catIds = (JArray)magentoAttr.value;
 
-                        foreach(String catId in catIds){
-                            if(strCatId.Equals(catId)){
+                        foreach (String catId in catIds)
+                        {
+                            if (strCatId.Equals(catId))
+                            {
                                 products.Add(product);
                                 break;
                             }

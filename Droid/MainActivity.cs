@@ -7,6 +7,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Android.Content.Res;
+using System.IO;
 
 namespace ShopPortable.Droid
 {
@@ -22,7 +24,22 @@ namespace ShopPortable.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
 
-            LoadApplication(new App());
+            // Read the contents of our asset
+            string jsonStringProduct;
+            AssetManager assets = this.Assets;
+            using (StreamReader sr = new StreamReader(assets.Open("products.json")))
+            {
+                jsonStringProduct = sr.ReadToEnd();
+            }
+
+            string jsonStringCategory;
+            using (StreamReader sr = new StreamReader(assets.Open("categories.json")))
+            {
+                jsonStringCategory = sr.ReadToEnd();
+            }
+
+
+            LoadApplication(new App(jsonStringProduct, jsonStringCategory));
         }
     }
 }

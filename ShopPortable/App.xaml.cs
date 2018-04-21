@@ -4,13 +4,25 @@ namespace ShopPortable
 {
     public partial class App : Application
     {
+        private string jsonStringProduct;
+        private string jsonStringCategory;
+
+        
+
         public App()
         {
+
+
+        }
+
+        public App(string jsonStringProduct, string jsonStringCategory)
+        {
+            this.jsonStringProduct = jsonStringProduct;
+            this.jsonStringCategory = jsonStringCategory;
             InitializeComponent();
 
             //MainPage = new ShopPortablePage();
-            MainPage = new NavigationPage(new ShopPortablePage());
-
+            MainPage = new NavigationPage(new ShopPortablePage(jsonStringProduct,jsonStringCategory ));
         }
 
         protected override void OnStart()
