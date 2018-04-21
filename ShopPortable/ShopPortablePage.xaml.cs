@@ -35,47 +35,37 @@ namespace ShopPortable
         {
             lblResult1.Text = "Loading master data. Pleasse wait";
 
-            //Client.loadMasterData();
-            Client.loadMasterDataCache(this.jsonStringProduct, this.jsonStringCategory);
+            Client.loadMasterData();
 
             lblResult1.Text = $"Status: {Client.Status}. {Client.Result}";
 
-            Category category = Client.getRootCategories();
 
-            Category newCat = Client.getCategoryById(14L);
-
-            List<Product> catProducts = Client.getProductsInCategoryByCategoyId(21L);
-
-            lblResult2.Text = category.name;
-
-            listViewCategory.Header = $"{category.name} ({category.children_data.Count})";
-            listViewCategory.ItemsSource = category.children_data;
 
 
 
 
         }
 
-
-        public ShopPortablePage()
-
-        {
-
-
-        }
 
         public ShopPortablePage(string jsonStringProduct, string jsonStringCategory)
         {
             this.jsonStringProduct = jsonStringProduct;
             this.jsonStringCategory = jsonStringCategory;
 
-            Client = new MagentoClient("http://192.168.1.91", "admin", "shakhmscpasS1]", 3000);
 
-
-            string token = Client.Token;
 
             InitializeComponent();
-            lblResult1.Text = token;
+
+            Client = new MagentoClient("http://192.168.1.91", "admin", "shakhmscpasS1]", 3000);
+            Client.loadMasterDataCache(this.jsonStringProduct, this.jsonStringCategory);
+            lblResult1.Text = $"Status: {Client.Status}. {Client.Result}";
+            Category category = Client.getRootCategories();
+
+            listViewCategory.Header = $"{category.name} ({category.children_data.Count})";
+            listViewCategory.ItemsSource = category.children_data;
         }
+
+        public ShopPortablePage() { }
+
     }
 }

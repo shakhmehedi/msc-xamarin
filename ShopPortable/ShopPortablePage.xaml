@@ -3,10 +3,9 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="8">
-                <Button x:Name="btnSearch" Clicked="onSearchButtonClicked" Text="Search Product"/>
                 <Label x:Name="lblResult1" Text="Clicr for restlt" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Label x:Name="lblResult2" Text="{Binding Result}" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Button Text="Test Json" Clicked="onClicked" />
+                <Button Text="Load live data" Clicked="onClicked" />
+                <Button x:Name="btnSearch" Clicked="onSearchButtonClicked" Text="Search Product" />
                 <ListView x:Name="listViewCategory" ItemTapped="Handle_ItemTapped" HasUnevenRows="true">
                     <ListView.ItemTemplate>
                         <DataTemplate>

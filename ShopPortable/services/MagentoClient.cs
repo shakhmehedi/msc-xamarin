@@ -29,6 +29,7 @@ namespace ShopPortable.services
         private string username;
         private string password;
         private int maxProductToLoad;
+        private bool isUsingSampleData = true;
 
         public string Token
         {
@@ -52,12 +53,14 @@ namespace ShopPortable.services
         public void loadMasterData()
         {
 
-            if (productPage.items.Count < 1 || rootCategory.children_data.Count < 1)
+            if (productPage.items.Count < 1 || rootCategory.children_data.Count < 1 || isUsingSampleData)
             {
                 try
                 {
+                    
                     productPage = GetProductPage(1, maxProductToLoad);
 
+                    productsBySku.Clear();
                     foreach (Product p in productPage.items)
                     {
                         productsBySku.Add(p.sku, p);
@@ -67,6 +70,7 @@ namespace ShopPortable.services
                     rootCategory = getRootCategories();
                     Result = "Master data loaded successfully";
                     Status = STATUS_OK;
+                    isUsingSampleData = false;
                 }
                 catch (Exception e)
                 {
@@ -96,8 +100,10 @@ namespace ShopPortable.services
 
                     string jsonC = JsonConvert.DeserializeObject<string>(jsonStringCategory);
                     rootCategory = JsonConvert.DeserializeObject<Category>(jsonC);
-                    Result = "Smmple master data loaded successfully";
+                    Result = "Sample master data loaded successfully";
                     Status = STATUS_OK;
+
+                    isUsingSampleData = true;
                 }
                 catch (Exception e)
                 {
