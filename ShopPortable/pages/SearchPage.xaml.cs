@@ -50,6 +50,7 @@ namespace ShopPortable.pages
                 }
             }else{
                 listViewProduct.Header = $"No product found for keyword \"{query}\" ";
+                listViewProduct.ItemsSource = new List<Product>();
 
             }
 

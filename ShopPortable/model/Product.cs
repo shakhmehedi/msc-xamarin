@@ -16,7 +16,7 @@ namespace ShopPortable.model
         public String sku { get; set; } = "product_dynamic_1";
         public String name { get; set; } = "Simple Product 1";
         public long attribute_set_id { get; set; } = 4;
-        public double price { get; set; } = 0;
+        public double price { get; set; } = 0.0d;
         public int status { get; set; } = 1;
         public int visibility { get; set; } = 4;
         public String type_id { get; set; } = "simple";

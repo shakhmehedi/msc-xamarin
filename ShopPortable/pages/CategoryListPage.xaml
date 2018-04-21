@@ -3,7 +3,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Button x:Name="btnSearch" Clicked="onSearchButtonClicked" Text="Search Product" />
-            <ScrollView MinimumHeightRequest="true">
+            <ScrollView>
                 <StackLayout Padding="8">
                     <ListView x:Name="listViewCategory" ItemTapped="Handle_ItemTappedCategory" HasUnevenRows="true">
                         <ListView.ItemTemplate>
@@ -26,10 +26,10 @@
                                         <StackLayout>
                                             <Label x:Name="lblProdName" Text="{Binding name}" TextColor="Blue" />
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="SKU: " />
+                                                <Label Text="SKU: "/>
                                                 <Label x:Name="lbleProdSku" Text="{Binding sku}" />
-                                                <Label Text="    " />
-                                                <Label Text="{Binding price, StringFormat='{0:C2}'}" />
+                                                <Label Text="    "/>
+                                                <Label Text="{Binding price, StringFormat='{0:N2}'}" />
                                             </StackLayout>
                                         </StackLayout>
                                     </ViewCell.View>
