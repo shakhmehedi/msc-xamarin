@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ShopPortable.pages.SearchPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar x:Name="sebMain" TextChanged="Handle_TextChanged" SearchButtonPressed="Handle_SearchButtonPressed" />
+            <ListView x:Name="listViewProduct" ItemTapped="Handle_ItemTappedProduct" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout>
+                                            <Label x:Name="lblProdName" Text="{Binding name}" TextColor="Blue" />
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="SKU: "/>
+                                                <Label x:Name="lbleProdSku" Text="{Binding sku}" />
+                                                <Label Text="    "/>
+                                                <Label Text="{Binding price, StringFormat='{0:N2}'}" />
+                                            </StackLayout>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

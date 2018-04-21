@@ -29,6 +29,22 @@
   <ItemGroup>
     <EmbeddedResource Include="App.xaml" />
     <EmbeddedResource Include="ShopPortablePage.xaml" />
+    <EmbeddedResource Include="pages\ProducDetailPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\CategoryListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\CategoryListContent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="pages\SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
@@ -48,6 +64,18 @@
     <Compile Include="model\ProductPage.cs" />
     <Compile Include="model\SearchCriteria.cs" />
     <Compile Include="model\FilterGroup.cs" />
+    <Compile Include="pages\ProducDetailPage.xaml.cs">
+      <DependentUpon>ProducDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\CategoryListPage.xaml.cs">
+      <DependentUpon>CategoryListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\CategoryListContent.xaml.cs">
+      <DependentUpon>CategoryListContent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="pages\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="project.json" />
@@ -55,6 +83,7 @@
   <ItemGroup>
     <Folder Include="model\" />
     <Folder Include="services\" />
+    <Folder Include="pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

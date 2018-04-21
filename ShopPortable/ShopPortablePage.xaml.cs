@@ -5,11 +5,25 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ShopPortable.model;
 using System.Collections.Generic;
+using ShopPortable.pages;
 
 namespace ShopPortable
 {
     public partial class ShopPortablePage : ContentPage
     {
+        void onSearchButtonClicked(object sender, System.EventArgs e)
+        {
+            Navigation.PushAsync(new SearchPage());
+        }
+
+
+        void Handle_ItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        {
+            var category = e.Item as Category;
+            Navigation.PushAsync(new CategoryListPage(category));
+
+        }
+
         public static MagentoClient Client { get; set; }
 
 
@@ -24,11 +38,15 @@ namespace ShopPortable
 
             Category category = Client.getRootCategories();
 
-            Category newCat = Client.getCategoryById(41L);
+            Category newCat = Client.getCategoryById(14L);
 
-            List<Product> catProducts = Client.getProductsInCategoryByCategoyId(41L);
+            List<Product> catProducts = Client.getProductsInCategoryByCategoyId(21L);
 
             lblResult2.Text = category.name;
+
+            listViewCategory.Header = $"{category.name} ({category.children_data.Count})";
+            listViewCategory.ItemsSource = category.children_data;
+
 
 
 
@@ -38,7 +56,7 @@ namespace ShopPortable
         public ShopPortablePage()
 
         {
-            Client = new MagentoClient("http://192.168.1.91","admin","shakhmscpasS1]", 3000 );
+            Client = new MagentoClient("http://192.168.1.91", "admin", "shakhmscpasS1]", 500);
 
 
             string token = Client.Token;

@@ -25,6 +25,7 @@ namespace ShopPortable.services
         public ProductPage productPage = new ProductPage();
         public Category rootCategory = new Category();
 
+        private Dictionary<string, Product> productsBySku = new Dictionary<string, Product>(); 
         private string username;
         private string password;
         private int maxProductToLoad;
@@ -54,6 +55,12 @@ namespace ShopPortable.services
                 try
                 {
                     productPage = GetProductPage(1, maxProductToLoad);
+
+                    foreach(Product p in productPage.items){
+                        productsBySku.Add(p.sku, p);
+                    }
+
+
                     rootCategory = getRootCategories();
                     Result = "Master data loaded successfully";
                     Status = STATUS_OK;
@@ -67,6 +74,17 @@ namespace ShopPortable.services
             }
 
 
+        }
+
+        public Product getProductBySku(string sku){
+            Product product = new Product();
+           // productsBySku.TryGetValue(sku, out product);
+
+            if(productsBySku.ContainsKey(sku)){
+                product = productsBySku[sku];
+            }
+
+            return product;
         }
 
 

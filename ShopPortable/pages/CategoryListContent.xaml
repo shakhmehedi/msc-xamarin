@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:ShopPortable" x:Class="ShopPortable.ShopPortablePage">
-    <ContentPage.Content>
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ShopPortable.pages.CategoryListContent">
+    <ContentView.Content>
         <ScrollView>
             <StackLayout Padding="8">
-                <Button x:Name="btnSearch" Clicked="onSearchButtonClicked" Text="Search Product"/>
-                <Label x:Name="lblResult1" Text="Clicr for restlt" VerticalOptions="Center" HorizontalOptions="Center" />
                 <Label x:Name="lblResult2" Text="{Binding Result}" VerticalOptions="Center" HorizontalOptions="Center" />
-                <Button Text="Test Json" Clicked="onClicked" />
                 <ListView x:Name="listViewCategory" ItemTapped="Handle_ItemTapped" HasUnevenRows="true">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -14,6 +11,9 @@
                                 <ViewCell.View>
                                     <StackLayout>
                                         <Label x:Name="lblCategoytName" Text="{Binding name}" TextColor="Purple" />
+                                        <Label x:Name="lblCategoryCount" Text="{Binding children_data.Count}" />
+                                        <Label x:Name="lblProductCount" Text="{Binding product_count}"/>
+                                        <Button x:Name="btnViewProducts" Text="View Products" Clicked="Handle_Clicked" CommandParameter="{Binding .}" />
                                     </StackLayout>
                                 </ViewCell.View>
                             </ViewCell>
@@ -22,5 +22,5 @@
                 </ListView>
             </StackLayout>
         </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+    </ContentView.Content>
+</ContentView>

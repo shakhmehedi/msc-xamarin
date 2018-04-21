@@ -8,7 +8,9 @@ namespace ShopPortable
         {
             InitializeComponent();
 
-            MainPage = new ShopPortablePage();
+            //MainPage = new ShopPortablePage();
+            MainPage = new NavigationPage(new ShopPortablePage());
+
         }
 
         protected override void OnStart()

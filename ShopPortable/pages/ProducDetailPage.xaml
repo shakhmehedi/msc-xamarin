@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="ShopPortable.pages.ProducDetailPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Button x:Name="btnSearch" Clicked="onSearchButtonClicked" Text="Search Product" />
+            <Label x:Name="lblProductName" Text="{Binding name}" />
+            <Label x:Name="lblPrice" Text="{Binding sku}" />
+            <Label x:Name="lblStockStatus" Text="{Binding price}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
