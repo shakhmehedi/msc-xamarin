@@ -56,7 +56,7 @@ namespace ShopPortable
 
             InitializeComponent();
 
-            Client = new MagentoClient("http://192.168.1.91", "admin", "shakhmscpasS1]", 3000);
+            Client = new MagentoClient("http://195.201.143.196", "admin", "shakhmscpasS1]", 3000);
             Client.loadMasterDataCache(this.jsonStringProduct, this.jsonStringCategory);
             lblResult1.Text = $"Status: {Client.Status}. {Client.Result}";
             Category category = Client.getRootCategories();
